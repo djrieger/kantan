@@ -66,6 +66,7 @@ grails.project.dependency.resolution = {
 		compile ":mail:1.0.1"
 		compile ":jquery-ui:1.10.3"
 		compile ":famfamfam:1.0.1"
+		compile ":kickstart-with-bootstrap:1.1.0"
 
         runtime ":hibernate:3.6.10.8" // or ":hibernate4:4.3.1.1"
         runtime ":database-migration:1.3.8"
