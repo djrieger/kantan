@@ -7,7 +7,7 @@ class User {
 	String username
 	String password
 	String email
-	Locale preferredLocale
+	Locale preferredLocale = Locale.GERMANY
 	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked

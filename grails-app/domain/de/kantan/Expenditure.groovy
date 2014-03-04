@@ -1,22 +1,34 @@
 package de.kantan
 
+import org.grails.databinding.BindUsing
+
 class Expenditure {
 	User creditor
 	List<DebitorAndShare> debitors
 	Date date
 	String title
 	BigDecimal amount
+	@BindUsing({ obj, source -> Currency.getInstance(source['currency']) })
 	Currency currency
-	
-	boolean billed = false
-	
+
+	static belongsTo = [ settlement: Settlement ] 
+
 	static hasMany = [ debitors: DebitorAndShare ]
-	
-    static constraints = {
+
+	static mapping = { debitors cascade:"all-delete-orphan" }
+
+	static constraints = {
+		// TODO: change
+		date(nullable: true)
+		debitors(nullable: true)
+		
+		settlement(nullable: true)
 		creditor()
-		debitors()
 		title(blank: false)
 		amount(notEqual: 0 as BigDecimal)
 		currency()
-    }
+//		validator: { String currencyCode -> 
+//			Currency.getAvailableCurrencies().count { it.getCurrencyCode() == currencyCode } == 1
+//		 })
+	}
 }
