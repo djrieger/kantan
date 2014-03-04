@@ -23,9 +23,6 @@
 			
 				<g:sortableColumn property="amount" title="${message(code: 'expenditure.amount.label', default: 'Amount')}" />
 			
-				<g:sortableColumn property="currency" title="${message(code: 'expenditure.currency.label', default: 'Currency')}" />
-			
-			
 				<g:sortableColumn property="date" title="${message(code: 'expenditure.date.label', default: 'Date')}" />
 			
 			</tr>
@@ -37,10 +34,8 @@
 				<td><g:link action="show" id="${expenditureInstance.id}">${fieldValue(bean: expenditureInstance, field: "creditor")}</g:link></td>
 			
 				<td>${fieldValue(bean: expenditureInstance, field: "title")}</td>
-			
-				<td>${fieldValue(bean: expenditureInstance, field: "amount")}</td>
-			
-				<td>${fieldValue(bean: expenditureInstance, field: "currency")}</td>
+
+				<td>${formatNumber(number: expenditureInstance.amount, type: 'currency', currencyCode: expenditureInstance.currency.getCurrencyCode())}</td>
 			
 			
 				<td><g:formatDate date="${expenditureInstance.date}" /></td>
