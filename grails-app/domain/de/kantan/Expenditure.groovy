@@ -10,6 +10,8 @@ class Expenditure {
 	
 	boolean billed = false
 	
+	static hasMany = [ debitors: DebitorAndShare ]
+	
     static constraints = {
 		creditor()
 		debitors()
