@@ -45,13 +45,6 @@
 			</tr>
 		
 			<tr class="prop">
-				<td valign="top" class="name"><g:message code="expenditure.billed.label" default="Billed" /></td>
-				
-				<td valign="top" class="value"><g:formatBoolean boolean="${expenditureInstance?.billed}" /></td>
-				
-			</tr>
-		
-			<tr class="prop">
 				<td valign="top" class="name"><g:message code="expenditure.date.label" default="Date" /></td>
 				
 				<td valign="top" class="value"><g:formatDate date="${expenditureInstance?.date}" /></td>

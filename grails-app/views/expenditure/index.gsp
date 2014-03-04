@@ -25,7 +25,6 @@
 			
 				<g:sortableColumn property="currency" title="${message(code: 'expenditure.currency.label', default: 'Currency')}" />
 			
-				<g:sortableColumn property="billed" title="${message(code: 'expenditure.billed.label', default: 'Billed')}" />
 			
 				<g:sortableColumn property="date" title="${message(code: 'expenditure.date.label', default: 'Date')}" />
 			
@@ -43,7 +42,6 @@
 			
 				<td>${fieldValue(bean: expenditureInstance, field: "currency")}</td>
 			
-				<td><g:formatBoolean boolean="${expenditureInstance.billed}" /></td>
 			
 				<td><g:formatDate date="${expenditureInstance.date}" /></td>
 			
