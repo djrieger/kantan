@@ -3,6 +3,8 @@ package de.kantan
 import org.grails.databinding.BindUsing
 
 class Expenditure {
+	Date dateCreated
+	
 	User creditor
 	List<DebitorAndShare> debitors
 	Date date
