@@ -34,14 +34,6 @@
 				</div>
 			</div>
 
-			<div class="${hasErrors(bean: expenditureInstance, field: 'billed', 'error')} ">
-				<label for="billed" class="control-label"><g:message code="expenditure.billed.label" default="Billed" /></label>
-				<div>
-					<bs:checkBox name="billed" value="${expenditureInstance?.billed}" />
-					<span class="help-inline">${hasErrors(bean: expenditureInstance, field: 'billed', 'error')}</span>
-				</div>
-			</div>
-
 			<div class="${hasErrors(bean: expenditureInstance, field: 'date', 'error')} required">
 				<label for="date" class="control-label"><g:message code="expenditure.date.label" default="Date" /><span class="required-indicator">*</span></label>
 				<div>
