@@ -32,7 +32,11 @@ class ExpenditureController {
     }
 
     @Transactional
-    def save(Expenditure expenditureInstance) {
+    def save(/*long expenditureId */ Expenditure expenditureInstance) {
+//		Expenditure expenditureInstance = Expenditure.get(expenditureId)
+//		bindData(expenditureInstance, params, [exclude: ['date']], "expenditureInstance")
+//		expenditureInstance.date = params.date('expenditureInstance.date', 'yyyy-dd-MM')
+		
         if (expenditureInstance == null) {
             notFound()
             return
