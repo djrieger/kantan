@@ -50,10 +50,29 @@
 	</g:each>
 </div>
 
+
 <r:script>
+	var childCount = ${expenditureInstance?.debitors.size()} + 0;
+
 	function addDebitor() {
-	
+		var clone = $("#debitor_clone").clone()
+        var htmlId = 'debitors[' + childCount + '].';
+        //var phoneInput = clone.find("input[id$=number]");
+ 
+      clone.find("input[name$=id]").attr('id',htmlId + 'id').attr('name',htmlId + 'id');
+      clone.find("input[name$=deleted]").attr('id',htmlId + 'deleted').attr('name',htmlId + 'deleted');
+      clone.find("input[name$=new]").attr('id',htmlId + 'new').attr('name',htmlId + 'new').attr('value', 'true');
+      //phoneInput.attr('id',htmlId + 'number').attr('name', htmlId + 'number');
+      clone.find("select").attr('id', htmlId + 'debitor.id').attr('name', htmlId + 'debitor.id');
+      clone.find("input[name$=share]").attr('id', htmlId + 'share').attr('name', htmlId + 'share');
+
+      clone.attr('id', 'debitor' + childCount);
+      $("#debitors").append(clone);
+      clone.show();
+      //phoneInput.focus();
+      childCount++;
 	}
 </r:script>
+
 
 <a onclick="addDebitor();">Add</a>
