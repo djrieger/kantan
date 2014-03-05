@@ -17,19 +17,26 @@
 		<thead>
 			<tr>
 			
-				<th><g:message code="expenditure.creditor.label" default="Creditor" /></th>
+
+				<g:sortableColumn property="dateCreated" title="${message(code: 'expenditure.date.label', default: 'Date')}" />
+
+
+				<g:sortableColumn property="user.username" titleKey="expenditure.creditor.label" title="Creditor" />
 			
-				<g:sortableColumn property="title" title="${message(code: 'expenditure.title.label', default: 'Title')}" />
+				<g:sortableColumn property="title" titleKey="${message(code: 'expenditure.title.label', default: 'Title')}" />
 			
 				<g:sortableColumn property="amount" title="${message(code: 'expenditure.amount.label', default: 'Amount')}" />
 			
-				<g:sortableColumn property="date" title="${message(code: 'expenditure.date.label', default: 'Date')}" />
+				<th><g:message code="expenditure.debitors.label" default="Für wen" /></th>
+			
+				<!--<g:sortableColumn property="date" title="${message(code: 'expenditure.date.label', default: 'Date')}" />-->
 			
 			</tr>
 		</thead>
 		<tbody>
 		<g:each in="${expenditureInstanceList}" status="i" var="expenditureInstance">
 			<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+				<td><g:formatDate date="${expenditureInstance.dateCreated}" /></td>
 			
 				<td><g:link action="show" id="${expenditureInstance.id}">${fieldValue(bean: expenditureInstance, field: "creditor")}</g:link></td>
 			
@@ -37,9 +44,13 @@
 
 				<td>${formatNumber(number: expenditureInstance.amount, type: 'currency', currencyCode: expenditureInstance.currency.getCurrencyCode())}</td>
 			
+				<!--  <td><g:formatDate date="${expenditureInstance.date}" /></td>-->
 			
-				<td><g:formatDate date="${expenditureInstance.date}" /></td>
-			
+				<td>
+					<g:each var="debitorAndShare" in="${expenditureInstance.debitors}">
+						${debitorAndShare.debitor.username} ${debitorAndShare.share},
+					</g:each>
+				</td>
 			</tr>
 		</g:each>
 		</tbody>
