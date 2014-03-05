@@ -10,7 +10,7 @@ class DebitorAndShare {
 	static belongsTo = [ expenditure: Expenditure ]
 	
     static constraints = {
-		debitor()
+		debitor(unique: ['expenditure'])
 		share(min: 1)
     }
 }

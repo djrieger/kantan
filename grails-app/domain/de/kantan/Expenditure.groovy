@@ -33,4 +33,8 @@ class Expenditure {
 //			Currency.getAvailableCurrencies().count { it.getCurrencyCode() == currencyCode } == 1
 //		 })
 	}
+	
+	public String toString() {
+		return title
+	}
 }
