@@ -3,7 +3,7 @@ package de.kantan
 class DebitorAndShare {
 	User debitor
 	int share = 1
-	boolean deleted
+	boolean deleted = false
 	
 	static transients = [ 'deleted' ]
 	

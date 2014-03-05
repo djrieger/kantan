@@ -17,7 +17,7 @@ class Expenditure {
 
 	static hasMany = [ debitors: DebitorAndShare ]
 
-	static mapping = { debitors cascade:"all-delete-orphan" }
+//	static mapping = { debitors cascade:"all-delete-orphan" }
 
 	static constraints = {
 		// TODO: change
