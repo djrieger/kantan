@@ -44,11 +44,16 @@
 	</div>
 </div>
 
-<g:each var="debitorAndShare" in="${expenditureInstance?.debitors}" status="i">
-	<select name="debitors[${i}].debitor.id" value="debitorAndShare.debitor.id">
-		<g:each var="user" in="${User.list()}">
-			<option value="${user.id}" ${ user == debitorAndShare.debitor ? 'selected' : '' }>${user}</option>
-		</g:each>
-	</select>
-	${debitorAndShare.share}
-</g:each>
+<div id="debitors">
+	<g:each var="debitorAndShare" in="${expenditureInstance?.debitors}" status="i">
+		<g:render template="debitorAndShare" model="['debitorAndShare': debitorAndShare, 'i':i]" />
+	</g:each>
+</div>
+
+<r:script>
+	function addDebitor() {
+	
+	}
+</r:script>
+
+<a onclick="addDebitor();">Add</a>
