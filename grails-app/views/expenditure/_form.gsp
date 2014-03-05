@@ -1,6 +1,8 @@
 <%@ page import="de.kantan.Expenditure" %>
 <%@ page import="de.kantan.User" %>
 
+<r:require module="chosen" />
+
 <div class="${hasErrors(bean: expenditureInstance, field: 'creditor', 'error')} required">
 	<label for="creditor" class="control-label"><g:message code="expenditure.creditor.label" default="Creditor" /><span class="required-indicator">*</span></label>
 	<div>
