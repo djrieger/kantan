@@ -74,6 +74,7 @@ class ExpenditureController {
             return
         }
 
+		expenditureInstance.debitors.removeAll { it.deleted }
         expenditureInstance.save flush:true
 
         request.withFormat {
