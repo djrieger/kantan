@@ -52,7 +52,7 @@
 
 
 <r:script>
-	var childCount = ${expenditureInstance?.debitors.size()} + 0;
+	var childCount = ${expenditureInstance?.debitors?.size() ?: 0} + 0;
 
 	function addDebitor() {
 		var clone = $("#debitor_clone").clone()
@@ -72,6 +72,24 @@
       //phoneInput.focus();
       childCount++;
 	}
+	
+	$(document).on('click', 'a.deleteDebitor', function() {
+		//find the parent div
+        var prnt = $(this).parents(".debitorDiv");
+        //find the deleted hidden input
+        var delInput = prnt.find("input[name$=deleted]");
+        //check if this is still not persisted
+        var newValue = prnt.find("input[name$=new]").attr('value');
+        //if it is new then i can safely remove from dom
+        if(newValue == 'true'){
+            prnt.remove();
+        }else{
+            //set the deletedFlag to true
+            delInput.attr('value','true');
+            //hide the div
+            prnt.hide();
+        }    
+	});
 </r:script>
 
 

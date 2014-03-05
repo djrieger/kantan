@@ -26,7 +26,7 @@
 	            <button class="btn" type="reset"><g:message code="default.button.reset.label" default="Reset" /></button>
 			</div>
 		</g:form>
-
+		<g:render template="debitorAndShare" model="['debitorAndShare': null, 'i': '_clone', 'hidden': true]" />
 	</section>
 
 </body>
