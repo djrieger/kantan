@@ -22,7 +22,7 @@ class Expenditure {
 	static constraints = {
 		// TODO: change
 		date(nullable: true)
-		debitors(nullable: true)
+		debitors()
 		
 		settlement(nullable: true)
 		creditor()
