@@ -54,6 +54,45 @@
 <r:script>
 	var childCount = ${expenditureInstance?.debitors?.size() ?: 0} + 0;
 
+	function disableSelectedOptions(selectElem){
+		var selector = (selectElem != null) ? selectElem : '.debitorDiv:visible select';
+    	// from http://rndnext.blogspot.de/2009/08/mutually-exclusive-html-select-elements.html
+        // List of ids that are selected in all select elements
+        var selected = new Array();
+        
+        // Get a list of the ids that are selected
+        $(selector + ' option:selected').each(function() {
+            selected.push($(this).val());
+        });
+        
+        // Walk through every select option and enable if not 
+        // in the list and not already selected
+        $(selector + ' option').each(function() {
+            if (!$(this).is(':selected') && $(this).val() != '') {
+                var shouldDisable = false;
+                for (var i = 0; i < selected.length; i++) {
+                    if (selected[i] == $(this).val())
+                        shouldDisable = true;
+                }
+                
+                $(this).css('text-decoration', '');
+                $(this).removeAttr('disabled');
+                if (shouldDisable)
+                {
+                    $(this).css('text-decoration', 'line-through');
+                    $(this).attr('disabled', 'disabled');
+                }
+            }
+        });
+	}
+	
+	$(document).on('change', '.debitorDiv:visible select', function() {
+		disableSelectedOptions(null);
+	});
+	$(document).ready(function () {
+		disableSelectedOptions(null);
+	});
+
 	function addDebitor() {
 		var clone = $("#debitor_clone").clone()
         var htmlId = 'debitors[' + childCount + '].';
@@ -71,8 +110,11 @@
       clone.show();
       //phoneInput.focus();
       childCount++;
+      
+      disableSelectedOptions(clone.attr('id'));
 	}
 	
+	// delete debitor
 	$(document).on('click', 'a.deleteDebitor', function() {
 		//find the parent div
         var prnt = $(this).parents(".debitorDiv");
@@ -89,6 +131,8 @@
             //hide the div
             prnt.hide();
         }    
+        
+        disableSelectedOptions(null);
 	});
 </r:script>
 
