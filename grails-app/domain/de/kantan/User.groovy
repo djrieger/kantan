@@ -8,6 +8,7 @@ class User {
 	String password
 	String email
 	Locale preferredLocale = Locale.GERMANY
+	Set<Community> communities
 	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked
@@ -19,6 +20,7 @@ class User {
 		username blank: false, unique: true
 		password blank: false
 		email blank: false, unique: true, email: true
+		communities(nullable: true)
 	}
 
 	static mapping = {

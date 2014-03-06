@@ -13,7 +13,7 @@ class Expenditure {
 	@BindUsing({ obj, source -> Currency.getInstance(source['currency']) })
 	Currency currency
 
-	static belongsTo = [ settlement: Settlement ] 
+	static belongsTo = [ settlement: Settlement, community: Community ] 
 
 	static hasMany = [ debitors: DebitorAndShare ]
 
