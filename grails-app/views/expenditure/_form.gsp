@@ -61,7 +61,26 @@
 </div>
 
 <r:script>
-	$('#foo').chosen();
+	$('#foo').chosen({ width: '100%' }).change(function() {
+		var shares = $('#shares');
+		//var foo = []; 
+		$('#foo option').each(function(i, option){
+			var userName = $(option).text();
+			var userId = $(option).val();
+			var shareRowExists = $('#shareRow' + userId).length > 0;
+			var optionSelected = $(option).is(':selected');
+			if (optionSelected && !shareRowExists) {
+			  	shares.append($('<div/>', { id: 'shareRow' + userId })
+			  		  .append($(option).text())
+				  	  .append($('<input/>', {
+				  		type: 'text',
+				  		value: '1'
+				  	  })));
+			} else if (!optionSelected && shareRowExists) {
+				$('#shareRow' + userId).remove();
+			}
+		});
+	});
 </r:script>
 
 <div class="${hasErrors(bean: expenditureInstance, field: 'debitors', 'error')} required">
@@ -71,6 +90,9 @@
 			<g:render template="debitorAndShare" model="['debitorAndShare': debitorAndShare, 'i':i]" />
 		</g:each>
 	</div>
+</div>
+
+<div id="shares">
 </div>
 
 <r:script>
