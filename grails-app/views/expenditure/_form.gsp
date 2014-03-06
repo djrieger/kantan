@@ -49,7 +49,22 @@
 	</div>
 </div>
 
-<div class="${hasErrors(bean: expenditureInstance, field: 'date', 'error')} required">
+<div class="${hasErrors(bean: expenditureInstance, field: 'debitors', 'error')} required">
+	<label for="debitors" class="control-label"><g:message code="expenditure.debitors.label" default="Debitors" /><span class="required-indicator">*</span></label>
+	<div id="debitors">
+		<select id="foo" multiple> 
+			<g:each var="user" in="${User.list()}">
+				<option value="${user.id}">${user}</option>
+			</g:each>
+		</select>
+	</div>
+</div>
+
+<r:script>
+	$('#foo').chosen();
+</r:script>
+
+<div class="${hasErrors(bean: expenditureInstance, field: 'debitors', 'error')} required">
 	<label for="debitors" class="control-label"><g:message code="expenditure.debitors.label" default="Debitors" /><span class="required-indicator">*</span></label>
 	<div id="debitors">
 		<g:each var="debitorAndShare" in="${expenditureInstance?.debitors}" status="i">
