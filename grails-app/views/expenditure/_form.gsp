@@ -52,7 +52,7 @@
 <div class="${hasErrors(bean: expenditureInstance, field: 'debitors', 'error')} required">
 	<label for="debitors" class="control-label"><g:message code="expenditure.debitors.label" default="Debitors" /><span class="required-indicator">*</span></label>
 	<div id="debitors">
-		<select id="foo" multiple> 
+		<select multiple> 
 			<g:each var="user" in="${User.list()}">
 				<option value="${user.id}">${user}</option>
 			</g:each>
@@ -64,9 +64,8 @@
 
 <r:script>
 	function updateTable() {
-		var shares = $('#shares');
-		//var foo = []; 
-		$('#foo option').each(function(i, option){
+		var shares = $('#additionalGuests');
+		$('#debitors option').each(function(i, option){
 			var userName = $(option).text();
 			var userId = $(option).val();
 			var shareRowExists = $('#shareRow' + userId).length > 0;
@@ -85,13 +84,14 @@
 	}
 	
 	updateTable();
-	$('#foo').chosen({ width: '100%' }).change(updateTable);
+	$('#debitors select').chosen({ width: '100%' }).change(updateTable);
 </r:script>
 
-<!-- <input type="hidden" name="debitorsIds[0]" value="1" />
-<input type="hidden" name="debitorsIds[1]" value="5" />
-<input type="hidden" name="debitorsIds[18]" value="1" /> -->
-<div id="shares">
+<div>
+	<label for="additionalGuests" class="control-label"><g:message code="expenditure.additionalGuests.label" default="Additional guests" /></label>
+	<div id="additionalGuests">
+	</div>
 </div>
+
 
 
