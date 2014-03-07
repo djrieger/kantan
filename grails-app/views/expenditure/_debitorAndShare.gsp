@@ -1,16 +1,16 @@
-<%@ page import="de.kantan.User" %>
-
-<div class="debitorDiv" id="debitor${i}" <g:if test="${hidden}">style="display:none;"</g:if>>	
-	<input type="hidden" name="debitors[${i}].deleted" value="false" />
-	<input type="hidden" name="debitors[${i}].new" value="false" />
-	<select name="debitors[${i}].debitor.id">
-		<g:each var="user" in="${User.list()}">
-			<option value="${user.id}" ${ user == debitorAndShare?.debitor ? 'selected' : '' }>${user}</option>
-		</g:each>
-		<g:if test="${hidden}">
-			<option selected>Bitte wählen</option>
-		</g:if>
-	</select>
-	<input type="number" name="debitors[${i}].share" value="${debitorAndShare?.share ?: 1}" min="1" />
-	<a class="deleteDebitor">Delete</a>
+<div id="shareRow" style="display:none;">
+	<span class="username"></span>
+	<select>
+		<option value="0" selected></option>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+		<option>4</option>
+		<option>5</option>
+		<option>6</option>
+		<option>7</option>
+		<option>8</option>
+		<option>9</option>
+		<option>10</option>
+	</select>	
 </div>

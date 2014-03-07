@@ -72,13 +72,12 @@
 			var shareRowExists = $('#shareRow' + userId).length > 0;
 			var optionSelected = $(option).is(':selected');
 			if (optionSelected && !shareRowExists) {
-			  	shares.append($('<div/>', { id: 'shareRow' + userId })
-			  		  .append($(option).text())
-				  	  .append($('<input/>', {
-				  	    name: 'debitorsIds[' + userId + ']',
-				  		type: 'text',
-				  		value: '1'
-				  	  })));
+				var newShareRow = $('#shareRow').clone();
+				newShareRow.attr('id', 'shareRow' + userId);
+				newShareRow.find('.username').text(userName);
+				newShareRow.find('select').attr('name', 'guestCount[' + userId + ']');
+				shares.append(newShareRow);
+				newShareRow.show();
 			} else if (!optionSelected && shareRowExists) {
 				$('#shareRow' + userId).remove();
 			}
