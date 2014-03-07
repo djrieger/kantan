@@ -60,8 +60,10 @@
 	</div>
 </div>
 
+<input type="hidden" name="community.id" value="1" />
+
 <r:script>
-	$('#foo').chosen({ width: '100%' }).change(function() {
+	function updateTable() {
 		var shares = $('#shares');
 		//var foo = []; 
 		$('#foo option').each(function(i, option){
@@ -73,6 +75,7 @@
 			  	shares.append($('<div/>', { id: 'shareRow' + userId })
 			  		  .append($(option).text())
 				  	  .append($('<input/>', {
+				  	    name: 'debitorsIds[' + userId + ']',
 				  		type: 'text',
 				  		value: '1'
 				  	  })));
@@ -80,25 +83,16 @@
 				$('#shareRow' + userId).remove();
 			}
 		});
-	});
+	}
+	
+	updateTable();
+	$('#foo').chosen({ width: '100%' }).change(updateTable);
 </r:script>
 
-<div class="${hasErrors(bean: expenditureInstance, field: 'debitors', 'error')} required">
-	<label for="debitors" class="control-label"><g:message code="expenditure.debitors.label" default="Debitors" /><span class="required-indicator">*</span></label>
-	<div id="debitors">
-		<g:each var="debitorAndShare" in="${expenditureInstance?.debitors}" status="i">
-			<g:render template="debitorAndShare" model="['debitorAndShare': debitorAndShare, 'i':i]" />
-		</g:each>
-	</div>
-</div>
-
+<!-- <input type="hidden" name="debitorsIds[0]" value="1" />
+<input type="hidden" name="debitorsIds[1]" value="5" />
+<input type="hidden" name="debitorsIds[18]" value="1" /> -->
 <div id="shares">
 </div>
 
-<r:script>
-	var childCount = ${expenditureInstance?.debitors?.size() ?: 0} + 0;
-</r:script>
 
-<r:require module="expenditure" />
-
-<a onclick="addDebitor();">Add</a>

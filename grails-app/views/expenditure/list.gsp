@@ -47,9 +47,10 @@
 				<!--  <td><g:formatDate date="${expenditureInstance.date}" /></td>-->
 			
 				<td>
-					<g:each var="debitorAndShare" in="${expenditureInstance.debitors}" status="status">
-						${debitorAndShare.debitor.username}<g:if test="${debitorAndShare.share > 1}"> (${debitorAndShare.share}x)</g:if><g:if test="${status != expenditureInstance.debitors.size() - 1}">, </g:if>
+					<g:each var="debitor" in="${expenditureInstance.debitors}" status="status">
+						${debitor.username}, 
 					</g:each>
+					
 				</td>
 			</tr>
 		</g:each>

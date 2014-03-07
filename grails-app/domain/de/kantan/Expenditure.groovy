@@ -6,7 +6,7 @@ class Expenditure {
 	Date dateCreated
 	
 	User creditor
-	List<DebitorAndShare> debitors
+	Collection<User> debitors
 	Date date
 	String title
 	BigDecimal amount
@@ -15,9 +15,11 @@ class Expenditure {
 
 	static belongsTo = [ settlement: Settlement, community: Community ] 
 
-	static hasMany = [ debitors: DebitorAndShare ]
+	static hasMany = [ debitors: User ]
 
-//	static mapping = { debitors cascade:"all-delete-orphan" }
+	static mapping = {
+		sort dateCreated: 'desc'
+	}
 
 	static constraints = {
 		// TODO: change
@@ -35,6 +37,7 @@ class Expenditure {
 	}
 	
 	public String toString() {
-		return title
+//		return title + debitors ? debitors.unique(false).collect { " ${it.username} (${ Collections.frequency(debitors, it) })" } : '';
+		return title + debitors ? debitors.groupBy { it }.collect { " ${it.key} (${it.value})" } : '';
 	}
 }

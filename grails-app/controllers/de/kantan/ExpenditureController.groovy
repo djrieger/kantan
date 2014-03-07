@@ -4,6 +4,18 @@ package de.kantan
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
+import org.grails.databinding.BindUsing
+
+class ExpenditureCommandObject {
+	User creditor
+	Map debitorsIds
+	Date date
+	String title
+	BigDecimal amount
+	String currency
+	Community community
+}
+
 /**
  * ExpenditureController
  * A controller class handles incoming web requests and performs actions such as redirects, rendering views and so on.
@@ -32,21 +44,25 @@ class ExpenditureController {
     }
 
     @Transactional
-    def save(/*long expenditureId */ Expenditure expenditureInstance) {
-//		Expenditure expenditureInstance = Expenditure.get(expenditureId)
-//		bindData(expenditureInstance, params, [exclude: ['date']], "expenditureInstance")
-//		expenditureInstance.date = params.date('expenditureInstance.date', 'yyyy-dd-MM')
-		
-        if (expenditureInstance == null) {
-            notFound()
-            return
-        }
+    def save(ExpenditureCommandObject cmd) {
+    	Expenditure expenditureInstance = new Expenditure(
+			creditor: cmd.creditor,
+			date: cmd.date,
+			title: cmd.title,
+			amount: cmd.amount,
+			currency: cmd.currency,
+			community: cmd.community
+		)
+		cmd.debitorsIds.each {
+			User debitor = User.get(it.key.toInteger())
+			it.value.toInteger().times { expenditureInstance.addToDebitors(debitor) }
+		}
 
         if (expenditureInstance.hasErrors()) {
             respond expenditureInstance.errors, view:'create'
             return
         }
-
+		
         expenditureInstance.save flush:true
 
         request.withFormat {
@@ -74,7 +90,6 @@ class ExpenditureController {
             return
         }
 
-		expenditureInstance.debitors.removeAll { it.deleted }
         expenditureInstance.save flush:true
 
         request.withFormat {
