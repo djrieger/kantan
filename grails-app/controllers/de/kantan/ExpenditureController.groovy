@@ -8,7 +8,7 @@ import org.grails.databinding.BindUsing
 
 class ExpenditureCommandObject {
 	User creditor
-	Map debitorsIds
+	Map guestCount
 	Date date
 	String title
 	BigDecimal amount
@@ -53,9 +53,9 @@ class ExpenditureController {
 			currency: cmd.currency,
 			community: cmd.community
 		)
-		cmd.debitorsIds.each {
+		cmd.guestCount.each {
 			User debitor = User.get(it.key.toInteger())
-			it.value.toInteger().times { expenditureInstance.addToDebitors(debitor) }
+			(it.value.toInteger() + 1).times { expenditureInstance.addToDebitors(debitor) }
 		}
 
         if (expenditureInstance.hasErrors()) {
