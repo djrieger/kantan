@@ -37,7 +37,6 @@ class Expenditure {
 	}
 	
 	public String toString() {
-//		return title + debitors ? debitors.unique(false).collect { " ${it.username} (${ Collections.frequency(debitors, it) })" } : '';
-		return title + debitors ? debitors.groupBy { it }.collect { " ${it.key} (${it.value})" } : '';
+		return title + (debitors ? ": $creditor -> " + debitors.unique(false).collect { " ${it.username} (${ Collections.frequency(debitors, it) })" } : '');
 	}
 }

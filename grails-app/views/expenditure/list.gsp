@@ -47,10 +47,20 @@
 				<!--  <td><g:formatDate date="${expenditureInstance.date}" /></td>-->
 			
 				<td>
-					<g:each var="debitor" in="${expenditureInstance.debitors}" status="status">
-						${debitor.username}, 
+					<g:set var="uniqueDebitors" value="${expenditureInstance.debitors.unique(false)}" />
+					<g:each var="debitor" in="${uniqueDebitors}" status="status">
+						${debitor.username}
+						<g:set var="guests" value="${ Collections.frequency(expenditureInstance.debitors, debitor) - 1 }" />
+						<g:if test="${ guests == 1 }">
+							<g:message code="expenditure.guest.label" default="guest" />
+						</g:if>
+						<g:elseif test="${ guests > 1 }">
+							<g:message code="expenditure.guests.label" default="guests" args="${ [ guests ] }" />
+						</g:elseif>
+						<g:if test="${ status < uniqueDebitors.size() - 1 }">
+							,
+						</g:if>
 					</g:each>
-					
 				</td>
 			</tr>
 		</g:each>
