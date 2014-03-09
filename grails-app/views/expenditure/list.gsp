@@ -36,7 +36,11 @@
 		<tbody>
 		<g:each in="${expenditureInstanceList}" status="i" var="expenditureInstance">
 			<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-				<td><g:formatDate date="${expenditureInstance.dateCreated}" /></td>
+				<td>
+				<abbr title="<g:formatDate date="${expenditureInstance.dateCreated}" />">
+					<prettytime:display date="${expenditureInstance.dateCreated}" />
+				</abbr>
+				</td>
 			
 				<td><g:link action="show" id="${expenditureInstance.id}">${fieldValue(bean: expenditureInstance, field: "creditor")}</g:link></td>
 			
