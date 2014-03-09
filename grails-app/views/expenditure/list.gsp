@@ -56,10 +56,10 @@
 						${debitor.username}
 						<g:set var="guests" value="${ Collections.frequency(expenditureInstance.debitors, debitor) - 1 }" />
 						<g:if test="${ guests == 1 }">
-							<g:message code="expenditure.guest.label" default="guest" />
+							<g:message code="expenditure.oneAdditionalGuest.label" default="(+ 1 guest)" />
 						</g:if>
 						<g:elseif test="${ guests > 1 }">
-							<g:message code="expenditure.guests.label" default="guests" args="${ [ guests ] }" />
+							<g:message code="expenditure.multipleAdditionalGuests.label" default="(+ guests)" args="${ [ guests ] }" />
 						</g:elseif>
 						<g:if test="${ status < uniqueDebitors.size() - 1 }">
 							,

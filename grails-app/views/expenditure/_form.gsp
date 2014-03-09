@@ -30,24 +30,27 @@
 	</div>
 </div>
 
-<div class="${hasErrors(bean: expenditureInstance, field: 'currency', 'error')} required">
-	<label for="currency" class="control-label"><g:message code="expenditure.currency.label" default="Currency" /><span class="required-indicator">*</span></label>
-	<div>
-		<g:currencySelect class='form-control' name="currency" value="${expenditureInstance?.currency}"  />
-		<span class="help-inline">${hasErrors(bean: expenditureInstance, field: 'currency', 'error')}</span>
+<!-- 
+	<div class="${hasErrors(bean: expenditureInstance, field: 'currency', 'error')} required">
+		<label for="currency" class="control-label"><g:message code="expenditure.currency.label" default="Currency" /><span class="required-indicator">*</span></label>
+		<div>
+			<g:currencySelect class='form-control' name="currency" value="${expenditureInstance?.currency}"  />
+			<span class="help-inline">${hasErrors(bean: expenditureInstance, field: 'currency', 'error')}</span>
+		</div>
 	</div>
-</div>
+-->
+<input type="hidden" name="currency" value="EUR" />
 
-
-
+<!--
 <div class="${hasErrors(bean: expenditureInstance, field: 'date', 'error')} required">
 	<label for="date" class="control-label"><g:message code="expenditure.date.label" default="Date" /><span class="required-indicator">*</span></label>
 	<div>
-	<!--  	<bs:datePicker name="date" precision="day"  value="${expenditureInstance?.date}"  />  -->
+	  	<bs:datePicker name="date" precision="day"  value="${expenditureInstance?.date}"  />  
 		  
 		<span class="help-inline">${hasErrors(bean: expenditureInstance, field: 'date', 'error')}</span>
 	</div>
 </div>
+-->
 
 <div class="${hasErrors(bean: expenditureInstance, field: 'debitors', 'error')} required">
 	<label for="debitors" class="control-label"><g:message code="expenditure.debitors.label" default="Debitors" /><span class="required-indicator">*</span></label>
@@ -64,7 +67,7 @@
 
 <r:script>
 	function updateTable() {
-		var shares = $('#additionalGuests');
+		var shares = $('#additionalGuests tbody');
 		$('#debitors option').each(function(i, option){
 			var userName = $(option).text();
 			var userId = $(option).val();
@@ -89,8 +92,14 @@
 
 <div>
 	<label for="additionalGuests" class="control-label"><g:message code="expenditure.additionalGuests.label" default="Additional guests" /></label>
-	<div id="additionalGuests">
-	</div>
+	<table id="additionalGuests">
+		<!-- <thead>
+		 	<th><g:message code="expenditure.guest.label" default="Guest" /></th>
+		 	<th><g:message code="expenditure.additionalGuests.label" default="Additional guests" /></th>
+		 </thead>  -->
+		 <tbody>
+		 </tbody>
+	</table>
 </div>
 
 
