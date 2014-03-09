@@ -16,6 +16,8 @@ class User {
 
 	static transients = ['springSecurityService']
 
+	static belongsTo = [ communities: Community ]
+	
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false

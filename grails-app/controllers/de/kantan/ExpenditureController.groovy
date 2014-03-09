@@ -120,6 +120,30 @@ class ExpenditureController {
         }
     }
 
+	def balances() {
+		/*
+		 * if (cook.toLowerCase() == currentGuest.toLowerCase()) {
+      newValues[0][sourcecol - 6] = amount - paysFor * perGuest;
+      //calculationSheet.getRange(row, destcol).setValue(amount - paysFor * perGuest);
+    } else {
+      newValues[0][sourcecol - 6] = - paysFor * perGuest;
+		 */
+		Community c = Community.get(1)
+		List<Expenditure> expenditures = Expenditure.findAllByCommunityAndSettlement(c, null)
+		Map<User, BigDecimal> balances = [:].withDefault { 0 as BigDecimal }
+		c.users.each { User user ->
+			List<Expenditure> e = expenditures.findAll { it.creditor == user || it.debitors.contains(user) }
+			e.each {	
+				if (user == it.creditor) {
+					balances[user] += it.amount
+				} 
+				Integer paysFor = it.debitors.count { it == user }
+				balances[user] -= paysFor * (it.amount / it.debitors.size())
+			}		
+		}
+		[balances: balances]
+	}
+	
     protected void notFound() {
         request.withFormat {
             form {
