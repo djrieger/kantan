@@ -4,7 +4,7 @@ modules = {
     }
 	
 	expenditure {
-		resource url: 'js/expenditure/debitors.js'
+//		resource url: 'js/expenditure/debitors.js'
 	}
 	
 	chosen {
