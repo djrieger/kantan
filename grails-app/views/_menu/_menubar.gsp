@@ -1,7 +1,16 @@
+<%@ page import="de.kantan.Community" %>
 <div class="">
-	<ul class="nav nav-tabs" data-role="listview" data-split-icon="gear" data-filter="true">
-	
 
+	<ul class="nav nav-tabs" data-role="listview" data-split-icon="gear" data-filter="true">
+
+		<g:each status="i" var="c" in="${Community.list()}">
+			<li class="controller">
+				<g:link controller="foo" action="index">
+					${c.name}
+				</g:link>
+			</li>
+		</g:each>
+<!-- 
 		<g:each status="i" var="c" in="${grailsApplication.controllerClasses.find { it.logicalPropertyName == 'expenditure' } }">
 			<li class="controller${params.controller == c.logicalPropertyName ? " active" : ""}">
 				<g:link controller="${c.logicalPropertyName}" action="index">
@@ -9,6 +18,6 @@
 				</g:link>
 			</li>
 		</g:each>
-		
+ -->		
 	</ul>
 </div>

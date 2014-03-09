@@ -20,10 +20,10 @@
 
 				<g:sortableColumn property="dateCreated" title="${message(code: 'expenditure.date.label', default: 'Date')}" />
 
+				<g:sortableColumn property="title" titleKey="${message(code: 'expenditure.title.label', default: 'Title')}" />
 
 				<g:sortableColumn property="user.username" titleKey="expenditure.creditor.label" title="Creditor" />
 			
-				<g:sortableColumn property="title" titleKey="${message(code: 'expenditure.title.label', default: 'Title')}" />
 			
 				<g:sortableColumn property="amount" title="${message(code: 'expenditure.amount.label', default: 'Amount')}" />
 			
@@ -41,10 +41,11 @@
 					<prettytime:display date="${expenditureInstance.dateCreated}" />
 				</abbr>
 				</td>
+
+				<td>${fieldValue(bean: expenditureInstance, field: "title")}</td>
 			
 				<td><g:link action="show" id="${expenditureInstance.id}">${fieldValue(bean: expenditureInstance, field: "creditor")}</g:link></td>
 			
-				<td>${fieldValue(bean: expenditureInstance, field: "title")}</td>
 
 				<td>${formatNumber(number: expenditureInstance.amount, type: 'currency', currencyCode: expenditureInstance.currency.getCurrencyCode())}</td>
 			
