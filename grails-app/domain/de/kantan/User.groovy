@@ -11,6 +11,7 @@ class User {
 	String email
 	Locale preferredLocale = Locale.GERMANY
 	Set<Community> communities
+	BankAccount bankAccount
 	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked
@@ -27,6 +28,7 @@ class User {
 		password blank: false
 		email blank: false, unique: true, email: true
 		communities(nullable: true)
+		bankAccount nullable: true
 	}
 
 	static mapping = {
