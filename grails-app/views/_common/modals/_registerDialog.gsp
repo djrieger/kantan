@@ -1,3 +1,5 @@
+<%@ page import="de.kantan.Community" %>
+
 <div class="modal fade" id="RegisterModal" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -13,12 +15,12 @@
 							<input class="form-control" name="firstname" id="firstname" type="text" placeholder="${message(code: 'security.firstname.label', default: 'Firstname')}">
 						</div>
 					</div>
-					<div class="form-group">
+				 	<div class="form-group">
 						<label class="col-lg-2 control-label" for="lastname">${message(code: 'security.lastname.label', default: 'Lastname')}</label>
 						<div   class="col-lg-10">
 							<input class="form-control" name="lastname" id="lastname" type="text" placeholder="${message(code: 'security.lastname.label', default: 'Lastname')}">
 						</div>
-					</div>
+					</div>  
 					<div class="form-group">
 						<label class="col-lg-2 control-label" for="email">${message(code: 'security.email.label', default: 'Email')}</label>
 						<div   class="col-lg-10">
@@ -37,11 +39,24 @@
 							<input class="form-control" name="confirmpasswd" id="confirmpasswd" type="password" placeholder="${message(code: 'security.password.confirm.label', default: 'Confirm')}">
 						</div>
 					</div>
+					<!-- 
 					<div class="form-group">
 						<label class="col-lg-10 checkbox" for="agreement">
 							<input class="col-lg-3" type="checkbox" value="" name="agreement" id="agreement" >
 							${message(code: 'security.agreement.label', default: 'I have read and agree with the Terms of Use.')}
 						</label>
+					</div>
+					 -->
+					 
+					 <div class="form-group">
+					 	<label class="col-lg-2 control-label" for="communities">${message(code: 'registration.requestCommunityMembership.label', default: 'Communities')}</label>
+					 <p><g:message code="registration.requestCommunityMembership.info" /></p>
+						<div   class="col-lg-10">
+							<g:select class="form-control chosenselect" name="communities"
+							  id="communities" multiple="true"
+							  from="${Community.list()}" optionKey="id" optionValue="name"
+							  noSelection="['': '']" /> 
+						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
