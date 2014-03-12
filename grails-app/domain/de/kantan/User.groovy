@@ -4,7 +4,9 @@ class User {
 
 	transient springSecurityService
 
-	String username
+	String firstname
+	String lastname
+	String getUsername() { "$firstname" + (User.countByFirstname(firstname) > 1 ? " $lastname" : '') }
 	String password
 	String email
 	Locale preferredLocale = Locale.GERMANY
@@ -14,12 +16,14 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
 
-	static transients = ['springSecurityService']
+	static transients = ['springSecurityService', 'username']
 
 	static belongsTo = [ communities: Community ]
 	
 	static constraints = {
 		username blank: false, unique: true
+		lastname blank: false
+		firstname: blank: false
 		password blank: false
 		email blank: false, unique: true, email: true
 		communities(nullable: true)
@@ -48,6 +52,6 @@ class User {
 	}
 	
 	public String toString() {
-		return username
+		return getUsername()
 	}
 }
