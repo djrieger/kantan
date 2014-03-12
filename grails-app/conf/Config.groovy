@@ -116,19 +116,37 @@ log4j = {
 
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.rejectIfNoRule = false
-grails.plugin.springsecurity.fii.rejectPublicInvocations = false
-
+//grails.plugin.springsecurity.rejectIfNoRule = false
+//grails.plugin.springsecurity.fii.rejectPublicInvocations = false
+grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'de.kantan.User'
+grails.plugin.springsecurity.userLookup.usernamePropertyName = 'email'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'de.kantan.UserRole'
 grails.plugin.springsecurity.authority.className = 'de.kantan.Role'
-grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':                              ['permitAll'],
-	'/index':                         ['permitAll'],
-	'/index.gsp':                     ['permitAll'],
-	'/**/js/**':                      ['permitAll'],
-	'/**/css/**':                     ['permitAll'],
-	'/**/images/**':                  ['permitAll'],
-	'/**/favicon.ico':                ['permitAll']
+grails.plugin.springsecurity.interceptUrlMap = [
+//	'/':                              ['permitAll'],
+//	'/index':                         ['permitAll'],
+//	'/index.gsp':                     ['permitAll'],
+//	'/**/js/**':                      ['permitAll'],
+//	'/**/css/**':                     ['permitAll'],
+//	'/**/images/**':                  ['permitAll'],
+//	'/**/favicon.ico':                ['permitAll']
+	'/':                  ['permitAll'],
+	'/index':             ['permitAll'],
+	'/index.gsp':         ['permitAll'],
+	'/**/js/**':          ['permitAll'],
+	'/**/css/**':         ['permitAll'],
+	'/**/images/**':      ['permitAll'],
+	'/**/favicon.ico':    ['permitAll'],
+	'/login/**':          ['permitAll'],
+	'/logout/**':         ['permitAll'],
+	
+	'/expenditure/**':    ['ROLE_USER'],
+	'/bankAccount/**':    ['ROLE_USER'],
+	'/settlement/**':     ['ROLE_USER'],
+	'/siteinfo/**':       ['ROLE_USER'],
+	
+	'/user/**':           ['ROLE_ADMIN'],
+	'/role/**':           ['ROLE_ADMIN'],
 ]
 

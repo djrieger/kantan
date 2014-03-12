@@ -4,11 +4,11 @@ class User {
 
 	transient springSecurityService
 
+	String email
 	String firstname
 	String lastname
 	String getUsername() { "$firstname" + (User.countByFirstname(firstname) > 1 ? " $lastname" : '') }
 	String password
-	String email
 	Locale preferredLocale = Locale.GERMANY
 	Set<Community> communities
 	BankAccount bankAccount

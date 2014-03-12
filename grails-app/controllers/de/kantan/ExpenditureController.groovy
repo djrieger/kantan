@@ -22,7 +22,8 @@ class ExpenditureCommandObject {
  */
 @Transactional(readOnly = true)
 class ExpenditureController {
-
+	def springSecurityService
+	
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
 	def index(Integer max) {
@@ -32,7 +33,7 @@ class ExpenditureController {
 
 	def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Expenditure.list(params), model:[expenditureInstanceCount: Expenditure.count()]
+        respond Expenditure.list(params), model:[expenditureInstanceCount: Expenditure.count(), prince: springSecurityService.principal]
     }
 
     def show(Expenditure expenditureInstance) {
