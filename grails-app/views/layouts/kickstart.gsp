@@ -20,6 +20,7 @@
 	<r:require modules="jquery"/> <%-- jQuery is required for Bootstrap! --%>
 	<r:require modules="bootstrap"/>
 	<r:require modules="bootstrap_utils"/>
+	<r:require modules="chosen" />
 
 	<r:layoutResources />
 	<g:layoutHead />
@@ -28,8 +29,6 @@
 	<!--[if lt IE 9]>
 		<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-
-	<%-- For Javascript see end of body --%>
 </head>
 
 <body>
@@ -58,11 +57,9 @@
    		<g:pageProperty name="page.include.bottom" />
 	</g:if>
 	<g:else>
-		<!-- Insert a modal dialog for registering (for an open site registering is possible on any page) -->
 		<g:render template="/_common/modals/registerDialog" model="[item: item]"/>
 	</g:else>
 	
-	<!-- Included Javascript files and other resources -->
 	<r:layoutResources />
 </body>
 
