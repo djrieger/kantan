@@ -141,10 +141,10 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/login/**':          ['permitAll'],
 	'/logout/**':         ['permitAll'],
 	
-	'/expenditure/**':    ['ROLE_USER'],
-	'/bankAccount/**':    ['ROLE_USER'],
-	'/settlement/**':     ['ROLE_USER'],
-	'/siteinfo/**':       ['ROLE_USER'],
+	'/expenditure/**':    ['ROLE_USER', 'ROLE_ADMIN'],
+	'/bankAccount/**':    ['ROLE_USER', 'ROLE_ADMIN'],
+	'/settlement/**':     ['ROLE_USER', 'ROLE_ADMIN'],
+	'/siteinfo/**':       ['ROLE_USER', 'ROLE_ADMIN'],
 	
 	'/user/**':           ['ROLE_ADMIN'],
 	'/role/**':           ['ROLE_ADMIN'],
