@@ -23,7 +23,6 @@
 
 			<div class="form-actions margin-top-medium">
 				<g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-	            <button class="btn" type="reset"><g:message code="default.button.reset.label" default="Reset" /></button>
 			</div>
 		</g:form>
 		<g:render template="debitorAndShare" model="['debitorAndShare': null, 'i': '_clone', 'hidden': true]" />
